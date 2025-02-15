@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/captainpip.github.io/static/css/main.41e30331.css",
+    "main.js": "/captainpip.github.io/static/js/main.af64d1dc.js",
+    "static/js/453.acca0757.chunk.js": "/captainpip.github.io/static/js/453.acca0757.chunk.js",
+    "index.html": "/captainpip.github.io/index.html",
+    "main.41e30331.css.map": "/captainpip.github.io/static/css/main.41e30331.css.map",
+    "main.af64d1dc.js.map": "/captainpip.github.io/static/js/main.af64d1dc.js.map",
+    "453.acca0757.chunk.js.map": "/captainpip.github.io/static/js/453.acca0757.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.41e30331.css",
+    "static/js/main.af64d1dc.js"
+  ]
+}
