@@ -1,33 +1,48 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Hobbies from "./pages/Hobbies";
-import Contact from "./pages/Contact";
 import "./styles.css";
 
 const App = () => {
+    const scrollToSection = (id) => {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    };
+
     return (
-        <Router>
+        <div className="App">
             <nav>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/projects">Projects</Link></li>
-                    <li><Link to="/hobbies">Hobbies</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+                    <li><button onClick={() => scrollToSection("home")}>Home</button></li>
+                    <li><button onClick={() => scrollToSection("about")}>About</button></li>
+                    <li><button onClick={() => scrollToSection("projects")}>Projects</button></li>
+                    <li><button onClick={() => scrollToSection("hobbies")}>Hobbies</button></li>
+                    <li><button onClick={() => scrollToSection("contact")}>Contact</button></li>
                 </ul>
             </nav>
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/hobbies" element={<Hobbies />} />
-                <Route path="/contact" element={<Contact />} />
-            </Routes>
-        </Router>
+            <section id="home" className="section">
+                <h1>Welcome to My Portfolio</h1>
+                <p>This is the home section.</p>
+            </section>
+
+            <section id="about" className="section">
+                <h1>About Me</h1>
+                <p>Here's a little about me...</p>
+            </section>
+
+            <section id="projects" className="section">
+                <h1>My Projects</h1>
+                <p>Check out some of my work here.</p>
+            </section>
+
+            <section id="hobbies" className="section">
+                <h1>Hobbies</h1>
+                <p>Here are some of my hobbies.</p>
+            </section>
+
+            <section id="contact" className="section">
+                <h1>Contact Me</h1>
+                <p>You can reach me via email at myemail@example.com.</p>
+            </section>
+        </div>
     );
 };
 
