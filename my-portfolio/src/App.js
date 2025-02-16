@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 const App = () => {
+    const [scrolled, setScrolled] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 50) {
+            setScrolled(true);
+        } else {
+            setScrolled(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     const scrollToSection = (id) => {
         document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     };
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
         <div className="App">
-            <nav>
+            <nav className={scrolled ? "scrolled" : ""}>
                 <ul>
                     <li><button onClick={() => scrollToSection("home")}>Home</button></li>
                     <li><button onClick={() => scrollToSection("about")}>About</button></li>
@@ -42,6 +63,13 @@ const App = () => {
                 <h1>Contact Me</h1>
                 <p>You can reach me via email at myemail@example.com.</p>
             </section>
+
+            {/* Back to Top Button */}
+            {scrolled && (
+                <button className="back-to-top" onClick={scrollToTop}>
+                    ↑
+                </button>
+            )}
         </div>
     );
 };
