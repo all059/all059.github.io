@@ -1,35 +1,55 @@
-/* Sticky Transparent Navbar */
-nav {
+/* Navbar */
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px 0;
-  background-color: #333;
-  transition: background-color 0.3s ease-in-out;
+  padding: 15px 20px;
+  background-color: #333; /* Initially dark gray */
+  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.5s ease-in-out;
   z-index: 1000;
   text-align: center;
+  display: flex;
+  justify-content: center; /* Center navbar items */
+  align-items: center;
+  opacity: 1;
 }
 
-nav.scrolled {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker when scrolled */
-  backdrop-filter: blur(5px); /* Adds a slight blur effect */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft drop shadow */
+.navbar.scrolled {
+  background-color: rgba(51, 51, 51, 0.8); /* Becomes semi-transparent when scrolling */
+  backdrop-filter: blur(5px); /* Adds a blur effect */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Larger drop shadow */
 }
 
+/* Fade-in effect */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
 
-nav ul {
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Centered Navbar Links */
+.nav-links {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center; /* Center links */
+  align-items: center;
 }
 
-nav ul li {
-  display: inline;
-  margin-right: 15px;
+.nav-links li {
+  margin: 0 15px; /* Add spacing between options */
 }
 
-nav ul li button {
+.nav-links li button {
   background: none;
   border: none;
   color: white;
@@ -38,10 +58,51 @@ nav ul li button {
   font-weight: bold;
 }
 
-nav ul li button:hover {
+.nav-links li button:hover {
   text-decoration: underline;
 }
 
+/* Mobile Hamburger Menu */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  left: 20px; /* Position hamburger icon on the left */
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+      display: block;
+  }
+
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      background-color: rgba(51, 51, 51, 0.95);
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 8px;
+  }
+
+  .nav-links.open {
+      display: flex;
+  }
+
+  .nav-links li {
+      margin: 10px 0;
+  }
+}
+
+/* Sections */
 .section {
   height: 100vh;
   display: flex;
@@ -49,6 +110,7 @@ nav ul li button:hover {
   justify-content: center;
   text-align: center;
   font-size: 24px;
+  padding: 50px 20px;
 }
 
 #home {
@@ -70,6 +132,7 @@ nav ul li button:hover {
 #contact {
   background-color: #777;
 }
+
 /* Back to Top Button */
 .back-to-top {
   position: fixed;

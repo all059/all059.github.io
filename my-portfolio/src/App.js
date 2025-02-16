@@ -3,6 +3,7 @@ import "./styles.css";
 
 const App = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const handleScroll = () => {
         if (window.scrollY > 50) {
@@ -29,16 +30,23 @@ const App = () => {
 
     return (
         <div className="App">
-            <nav className={scrolled ? "scrolled" : ""}>
-                <ul>
-                    <li><button onClick={() => scrollToSection("home")}>Home</button></li>
-                    <li><button onClick={() => scrollToSection("about")}>About</button></li>
-                    <li><button onClick={() => scrollToSection("projects")}>Projects</button></li>
-                    <li><button onClick={() => scrollToSection("hobbies")}>Hobbies</button></li>
-                    <li><button onClick={() => scrollToSection("contact")}>Contact</button></li>
-                </ul>
+            {/* Navbar */}
+            <nav className={`navbar ${scrolled ? "scrolled fade-in" : ""}`}>
+                <div className="nav-container">
+                    <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                        ☰
+                    </button>
+                    <ul className={menuOpen ? "nav-links open" : "nav-links"}>
+                        <li><button onClick={() => scrollToSection("home")}>Home</button></li>
+                        <li><button onClick={() => scrollToSection("about")}>About</button></li>
+                        <li><button onClick={() => scrollToSection("projects")}>Projects</button></li>
+                        <li><button onClick={() => scrollToSection("hobbies")}>Hobbies</button></li>
+                        <li><button onClick={() => scrollToSection("contact")}>Contact</button></li>
+                    </ul>
+                </div>
             </nav>
 
+            {/* Sections */}
             <section id="home" className="section">
                 <h1>Welcome to My Portfolio</h1>
                 <p>This is the home section.</p>
