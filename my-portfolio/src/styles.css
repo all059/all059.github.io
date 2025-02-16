@@ -13,7 +13,10 @@ nav {
 
 nav.scrolled {
   background-color: rgba(0, 0, 0, 0.8); /* Darker when scrolled */
+  backdrop-filter: blur(5px); /* Adds a slight blur effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft drop shadow */
 }
+
 
 nav ul {
   list-style-type: none;
