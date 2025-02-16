@@ -22,6 +22,7 @@ const App = () => {
 
     const scrollToSection = (id) => {
         document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        setMenuOpen(false);
     };
 
     const scrollToTop = () => {
@@ -32,19 +33,18 @@ const App = () => {
         <div className="App">
             {/* Navbar */}
             <nav className={`navbar ${scrolled ? "scrolled fade-in" : ""}`}>
-                <div className="nav-container">
-                    <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-                        ☰
-                    </button>
-                    <ul className={menuOpen ? "nav-links open" : "nav-links"}>
-                        <li><button onClick={() => scrollToSection("home")}>Home</button></li>
-                        <li><button onClick={() => scrollToSection("about")}>About</button></li>
-                        <li><button onClick={() => scrollToSection("projects")}>Projects</button></li>
-                        <li><button onClick={() => scrollToSection("hobbies")}>Hobbies</button></li>
-                        <li><button onClick={() => scrollToSection("contact")}>Contact</button></li>
-                    </ul>
-                </div>
+                <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    ☰
+                </button>
+                <ul className={menuOpen ? "nav-links open" : "nav-links"}>
+                    <li><button onClick={() => scrollToSection("home")}>Home</button></li>
+                    <li><button onClick={() => scrollToSection("about")}>About</button></li>
+                    <li><button onClick={() => scrollToSection("projects")}>Projects</button></li>
+                    <li><button onClick={() => scrollToSection("hobbies")}>Hobbies</button></li>
+                    <li><button onClick={() => scrollToSection("contact")}>Contact</button></li>
+                </ul>
             </nav>
+
 
             {/* Sections */}
             <section id="home" className="section">
