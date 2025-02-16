@@ -5,7 +5,7 @@ nav {
   left: 0;
   width: 100%;
   padding: 15px 0;
-  background-color: rgba(0, 0, 0, 1); /* Transparent initially */
+  background-color: #333;
   transition: background-color 0.3s ease-in-out;
   z-index: 1000;
   text-align: center;
