@@ -1,164 +1,228 @@
 /* Navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 20px;
-  background-color: #333; /* Initially dark gray */
-  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.5s ease-in-out;
-  z-index: 1000;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center navbar items */
-  opacity: 1;
-}
-
-.navbar.scrolled {
-  background-color: rgba(51, 51, 51, 0.8); /* Becomes semi-transparent when scrolling */
-  backdrop-filter: blur(5px); /* Adds a blur effect */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Larger drop shadow */
-}
-
-/* Fade-in effect */
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-}
-
-/* Centered Navbar Links */
-.nav-links {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center; /* Center links */
-  align-items: center;
-}
-
-.nav-links li {
-  margin: 0 15px; /* Add spacing between options */
-}
-
-.nav-links li button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.nav-links li button:hover {
-  text-decoration: underline;
-}
-
-/* Mobile Hamburger Menu */
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1100;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-      display: block;
-      position: absolute;
-      right: 20px; /* Aligns menu icon to the right */
-      top: 15px;
-  }
-
-  .navbar {
-    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #333; /* Initially dark gray */
+    transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 1000;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* Center navbar items */
     align-items: center;
-    height: auto; /* Adjusts height when menu is open */
+    opacity: 1;
   }
-
+  
+  .navbar.scrolled {
+    background-color: rgba(51, 51, 51, 0.8); /* Becomes semi-transparent when scrolling */
+    backdrop-filter: blur(5px); /* Adds a blur effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Larger drop shadow */
+  }
+  
+  /* Fade-in effect */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
+  
+  /* Centered Navbar Links */
   .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      background-color: rgba(51, 51, 51, 0.95);
-      text-align: center;
-      padding: 20px 0;
-      border-radius: 8px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center links */
+    align-items: center;
   }
-
-  .nav-links.open {
-      display: flex;
-  }
-
+  
   .nav-links li {
-      margin: 10px 0;
+    margin: 0 15px; /* Add spacing between options */
   }
+  
+  .nav-links li button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .nav-links li button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Mobile Hamburger Menu */
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    left: 20px; /* Position hamburger icon on the left */
+  }
+  
+  @media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+  
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        background-color: rgba(51, 51, 51, 0.95);
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 8px;
+    }
+  
+    .nav-links.open {
+        display: flex;
+    }
+  
+    .nav-links li {
+        margin: 10px 0;
+    }
+  }
+  
+  /* Sections */
+  .section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    padding: 50px 20px;
+  }
+  
+  #home {
+    background-color: #f4f4f4;
+  }
+  
+  #about {
+    background-color: #ddd;
+  }
+  
+  #projects {
+    background-color: #bbb;
+  }
+  
+  #hobbies {
+    background-color: #999;
+  }
+  
+  #contact {
+    background-color: #777;
+  }
+  
+  /* Back to Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.7;
+  }
+  
+  .back-to-top:hover {
+    opacity: 1;
+  }
+
+/* Typewriter Effect */
+.typewriter {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    font-family: "Courier New", Courier, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    position: relative; /* Needed for absolute cursor */
+    text-align: left;
+    min-width: 8ch; /* Prevents layout shifting */
 }
 
-/* Sections */
-.section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 24px;
-  padding: 50px 20px;
+Blinking Cursor
+.cursor {
+    display: inline-block;
+    width: 5px;
+    height: 28px;
+    background-color: black;
+    animation: blinkCursor 0.8s infinite;
 }
 
-#home {
-  background-color: #f4f4f4;
+/* Cursor Blink Animation */
+@keyframes blinkCursor {
+    50% {
+        opacity: 0;
+    }
 }
 
-#about {
-  background-color: #ddd;
+/* Profile Image */
+.profile-photo {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
 
-#projects {
-  background-color: #bbb;
+/* Shrinking effect when pressed */
+.profile-photo.shrink {
+    transform: scale(0.9);
 }
 
-#hobbies {
-  background-color: #999;
+/* Spinning effect when released */
+.profile-photo.spin {
+    animation: spin 0.2s ease-in-out;
 }
 
-#contact {
-  background-color: #777;
+@keyframes spin {
+    from {
+        transform: rotate(-5deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
 }
 
-/* Back to Top Button */
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0.7;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .home-content {
+        flex-direction: column;
+    }
 
-.back-to-top:hover {
-  opacity: 1;
+    .profile-photo {
+        width: 240px;
+        height: 240px;
+    }
 }

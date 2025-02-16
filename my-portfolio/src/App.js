@@ -1,24 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles.css";
 
 const App = () => {
+    const [isSpinning, setIsSpinning] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-
-    const handleScroll = () => {
-        if (window.scrollY > 50) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
-        }
-    };
+    const [typedText, setTypedText] = useState("");
+    const [showCursor, setShowCursor] = useState(true); // For blinking cursor effect
+    const fullText = "Andy Lu";
+    const typingSpeed = 100; // Speed in milliseconds
+    const indexRef = useRef(0); // Keep track of index without triggering re-renders
+    const textRef = useRef(""); // Store typed text independently
 
     useEffect(() => {
+        setTypedText(""); // Reset text before typing starts
+        textRef.current = ""; // Reset ref value
+
+        // Typing effect setup
+        const typingInterval = setInterval(() => {
+            if (indexRef.current < fullText.length) {
+                textRef.current += fullText.charAt(indexRef.current);
+                setTypedText(textRef.current);
+                indexRef.current += 1;
+            } else {
+                clearInterval(typingInterval);
+                // Start blinking cursor effect after typing is done
+                setInterval(() => {
+                    setShowCursor((prev) => !prev);
+                }, 500);
+            }
+        }, typingSpeed);
+
+        // Scroll event listener setup
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
         window.addEventListener("scroll", handleScroll);
+
+        // Cleanup function
         return () => {
+            clearInterval(typingInterval);
             window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    }, [fullText, typingSpeed]); // Depend on fullText and typingSpeed
+
+    const handleMouseDown = () => {
+        setIsPressed(true); // Shrinks image when clicked
+    };
+
+    const handleMouseUp = () => {
+        setIsPressed(false);
+        setIsSpinning(true);
+        setTimeout(() => setIsSpinning(false), 1000); // Reset spin after 1 second
+    };
 
     const scrollToSection = (id) => {
         document.getElementById(id).scrollIntoView({ behavior: "smooth" });
@@ -45,11 +80,26 @@ const App = () => {
                 </ul>
             </nav>
 
-
             {/* Sections */}
-            <section id="home" className="section">
-                <h1>Welcome to My Portfolio</h1>
-                <p>This is the home section.</p>
+            <section id="home" className="section home-section">
+                <div className="home-content">
+                    <img 
+                        src="/self_photo.jpg" 
+                        alt="My Portrait" 
+                        className={`profile-photo ${isPressed ? "shrink" : ""} ${isSpinning ? "spin" : ""}`} 
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                        onTouchStart={handleMouseDown}  // Mobile support
+                        onTouchEnd={handleMouseUp} // Mobile support
+                    />
+                    <div className="text-container">
+                        <h1 className="typewriter">
+                            {typedText}
+                            {showCursor && <span className="cursor">|</span>}
+                        </h1>
+                        <p>Welcome!</p>
+                    </div>
+                </div>
             </section>
 
             <section id="about" className="section">
